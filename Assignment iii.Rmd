@@ -1,0 +1,7 @@
+---
+title: "Probability and Stochastic Processes Assignment 2"
+author: "Jeremy Gachanja"
+date: "8/3/2022"
+output: pdf_document
+---
+
