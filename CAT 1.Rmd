@@ -1,0 +1,140 @@
+---
+title: "PROBABILITY AND STOCHASTIC PROCESSES CAT 1"
+author: "Jeremy Gachanja"
+date: "7/13/2022"
+output: pdf_document
+---
+
+# 1. Peter is in jail and has 20 dollars; he can get out on bail if he has 64 dollars. A guard agrees to make a series of bets with him. If Smith bets A dollar, he wins A dollar with probability 0.55 and loses A dollar with probability 0.45. Find the probability that he wins 8 dollars before losing all of his money if
+
+## a. he bets 5 dollars each time (timid strategy).
+
+```{r}
+i_1 = 5
+n = 8
+p=0.55
+q=0.45
+p_winning = (1-(q/p)^i_1)/(1-(q/p)^n)
+print(p_winning)
+```
+From the above via the timid approach he has a 0.79 chance of wining his freedom
+
+## b. he bets, each time, as much as possible but not more than necessary to
+bring his fortune up to 64 dollars (bold strategy).
+
+### solution
+
+$$ P_{20} = 0.55P_{40}+0.45P_0$$
+
+$$P_{40} = 0.55P_{64}+0.45P_{16}$$
+
+$$P_{16} = 0.55P_{32}+0.45P_0$$
+
+$$P_{32} = 0.55P_{64}+0.45P_0$$
+The only known probabilities are $P_{64}, P_{0}$ which are 1 and 0 respectively. We can therefore estimate $P_{40}, P_{16}, P_{32}$ recursively from the equation (i) to (iv)
+```{r}
+p_32 = 0.55*(1)+0.45*(0)
+p_16 = 0.55*(p_32)+0.45*(0)
+p_40 = 0.55*(1)+0.45*(p_16)
+p_20 = 0.55*(p_40)+0.45*(0)
+
+print(p_20)
+```
+Therefore the probability of wining using the bold approach would be 0.3773
+
+## c. Which strategy gives Smith the better chance of getting out of jail?
+
+### solution
+
+The timid appraoch gives him higher chances of wining his freedom with the probability of 0.79
+
+
+# 2. Derive the formulas for the Gambler’s Ruin Problem for situation when p=q and not p=q . Also describe how to becoming infinitely rich or getting ruined in the same Gambler’s Ruin setting [Hint: Check several literatures on google and other text books]
+$$\text{Deriving the formula for } p \neq q\\$$
+
+$$\text{We start from the foundational equation that } q_z = pq_{z+1} = qq_{z-1}$$
+$$\text{Here we can generalise that the solution to this equation can be found such that where A, B are real numbers then we can rewrite the above as: }\\ Aq_z + Bq_z\prime \rightarrow 1$$
+$$\text {Recall that the above equation can be generalised to }\\ pP_i + qP_i = pP_{i+1} + qP_{i-1}$$
+$$\text{Picking the like terms together we get }\\
+pP_{i+1}-pP_i = qP_i - qP_{i-1}$$
+
+$$p(P_{i+1}-P_i) = q(P_i-P_{i-1})$$
+$$P_{i+1}-P_i = \frac{q}{p}(P_i-P_{i-1})$$
+
+$$\text{In this case lets substitute i with numbers, such that i = 1. This would lead to: }$$
+$$P_{2}-P_1 = \frac{q}{p}(P_1-P_{0})$$
+
+$$\text{Recall that }P_0 = 0 \text{ As such the formula reduces to: }$$
+
+$$P_{2}-P_1 = \frac{q}{p}(P_1)$$
+
+$$\text{Consequently we can expand this to i = 2, such that: }$$
+
+$$P_{3}-P_2 = \frac{q}{p}(P_2-P_{1})\ \text{Recall that }P_2-P_1 = \frac{q}{p}(P_1)\\$$
+$$\text{ This would thus lead to }P_3 -P_2 = \frac{q}{p}(\frac{q}{p}(P_1)) \rightarrow P_3 - P_2 = (\frac{q}{p})^2P_1$$
+
+$$\text{This can be generalised to} P_{i+1}-P_i = (\frac{q}{p})^i(P_{i+1}-P_{i-1})\\$$
+$$\text{Given that }q_0 = 1 \text{ and } q_a = 0 \text{ then 1 will be come for i = 0 }$$
+
+$$A+B = 1$$
+$$\text{for i = a, 1 will become}$$
+
+$$B(\frac{q}{p})^a = q_a$$
+
+
+
+# 3. Tom starts with 5, and p = 0.63: What is the probability that:
+
+## a.Tom obtains a fortune of N = 12 without going broke? 
+
+### solution
+
+```{r}
+n = 12
+p=0.63
+q=1-p
+i = 5
+p_win = (1-(q/p)^i)/(1-(q/p)^n)
+
+print(p_win)
+```
+
+
+## b. What is the probability that Tom will become infinitely rich? 
+
+### solution
+
+```{r}
+p_infinite_w = 1-(q/p)^5
+print(p_infinite_w)
+```
+From the above output, the chances of becoming infinitely rich are 0.93
+
+## c.If Tom instead started with i = 2, what is the probability that he would go broke?
+
+```{r}
+n = 12
+p=0.63
+q=1-p
+i = 2
+p_win = (1-(q/p)^i)/(1-(q/p)^n)
+
+print(1-p_win)
+```
+From the above output, the chances of being ruined are 0.34
+
+
+# 4. Collins bought a share of stock for 10, and it is believed that the stock price moves (day by day) as a simple random walk with p = 0.6. What is the probability that Collins’ stock reaches the high value of $25 before the low value of 4?
+
+```{r}
+p = 0.6
+q=1-p
+i=10
+n=25
+a=n-i
+b=4
+p_stock_movement = (1-(q/p)^b)/(1-(q/p)^(a+b))
+print(p_stock_movement)
+
+```
+From the output above, the chances of the stock going up to 25 before going down to 4 is 0.802

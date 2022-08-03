@@ -1,0 +1,262 @@
+---
+title: "PROBABILITY AND STOCHASTIC PROCESSES ASSIGNMENT 1"
+author: "Jeremy Gachanja"
+date: "7/21/2022"
+output: pdf_document
+fontsize: 18pt
+always_allow_html: true
+
+---
+
+# 1. In the Dark Ages, Harvard, Dartmouth, and Yale admitted only male students. Assume that, at that time, 60 percent of the sons of Harvard men went to Harvard and the rest went to Yale, 30 percent of the sons of Yale men went to Yale, and the rest split evenly between Harvard and Dartmouth; and of the sons of Dartmouth men, 50 percent went to Dartmouth, 30 percent to Harvard, and 20 percent to Yale.
+
+## (i) Generate the transition probabilities.
+
+```{r}
+library(markovchain)
+transition_mat1=matrix(nrow = 3,ncol=3,c(0.6,0.35,0.3,0.4,0.3,0.2,0,0.35,0.5))
+statesNames <- c("Harvard", "Yale", "Dartmouth")
+markovB <- new("markovchain", states = statesNames, transitionMatrix =transition_mat1, name = "A markovchain Object")
+print(markovB)
+```
+
+
+## (ii) Draw the transition states with their respective probabilities
+
+```{r,echo=FALSE}
+DiagrammeR::grViz("digraph {
+  graph [layout = dot, rankdir = TB]
+  
+  node [shape = oval]        
+  rec1 [label = 'Harvard']
+  rec2 [label = 'Dartmouth']
+  rec3 [label =  'Yale']
+  
+  rec1 ->rec1[label=0.6]
+  
+  rec1->rec3[label=0.4]
+  
+  rec3->rec3[label=0.3]
+  
+  rec3->{rec2,rec1}[label = 0.35]
+  
+  rec2->rec2[label=0.5]
+  
+  rec2->rec3[label=0.2]
+  
+  rec2->rec1[label=0.3]
+  
+  }",
+  height = 500)
+```
+
+## (iii) Find the probability that the grandson of a man from Harvard went to Harvard.
+
+$Q^2$
+
+where Q is the transition matrix
+
+```{r,echo=FALSE}
+two_step1 = transition_mat1%*%transition_mat1
+print(two_step1)
+```
+From the above output, the probability of the grandson of a Harvard man going to Harvard is 0.5
+
+## (iv) Modify the above by assuming that the son of a Harvard man always went to Harvard.
+
+```{r,echo=FALSE}
+DiagrammeR::grViz("digraph {
+  graph [layout = dot, rankdir = TB]
+  
+  node [shape = oval]        
+  rec1 [label = 'Harvard']
+  rec2 [label = 'Dartmouth']
+  rec3 [label =  'Yale']
+  
+  rec1 ->rec1[label=1]
+  
+  rec3->rec3[label=0.3]
+  
+  rec3->{rec2,rec1}[label = 0.35]
+  
+  rec2->rec2[label=0.5]
+  
+  rec2->rec3[label=0.2]
+  
+  rec2->rec1[label=0.3]
+  
+  }",
+  height = 500)
+```
+
+## (v) Find the probability that the grandson of a man from Harvard went to Harvard.
+
+$Q^2$
+
+```{r,echo=FALSE}
+transition_mat11=matrix(nrow = 3,ncol=3,c(1,0.35,0.3,0,0.3,0.2,0,0.35,0.5))
+two_step2=transition_mat11%*%transition_mat11
+print(two_step2)
+```
+From the above output, the probability of the grandson of a Harvard man going to Harvard is 1
+
+
+## (vi) Determine the steady-state probabilities
+
+```{r}
+
+library(markovchain)
+transition_mat1=matrix(nrow = 3,ncol=3,c(0.6,0.35,0.3,0.4,0.3,0.2,0,0.35,0.5))
+statesNames <- c("Harvard", "Yale", "Dartmouth")
+markovB <- new("markovchain", states = statesNames, transitionMatrix =transition_mat1, name = "A markovchain Object")
+steadyStates(markovB)
+```
+
+
+# 2. Assume that a man’s profession can be classified as professional, skilled labourer, or unskilled labourer. Assume that, of the sons of professional men, 70 percent are professional, 25 percent are skilled labourers, and 5 percent are unskilled labourers. In the case of sons of skilled labourers, 58 percent are skilled labourers, 22 percent are professional, and 30 percent are unskilled. Finally, in the case of unskilled labourers, 70 percent of the sons are unskilled labourers, and 15 percent each are in the other two categories. Assume that every man has at least one son, and form a Markov chain by following the profession of a randomly chosen son of a given family through several generations.
+
+## (i) Set up the matrix of transition probabilities.
+```{r}
+transition_matrixQ= matrix(nrow=3,ncol=3,c(0.7,0.22,0.15,0.25,0.58,0.15,0.05,0.2,0.7))
+rownames(transition_matrixQ)= c("Professional", "Skilled", "Unskilled")
+colnames(transition_matrixQ)= c("Professional", "Skilled", "Unskilled")
+print(transition_matrixQ)
+```
+
+
+## (ii) Draw the transition states with their respective probabilities
+
+```{r,echo=FALSE}
+DiagrammeR::grViz("digraph {
+  graph [layout = dot, rankdir = TB]
+  
+  node [shape = oval]        
+  rec1 [label = 'Professional']
+  rec2 [label = 'Skilled Labour']
+  rec3 [label =  'unskilled Labour']
+  
+  rec1 ->rec1[label=0.7]
+  
+  rec1->rec3[label=0.05]
+  
+  rec1->rec2[label=0.25]
+  
+  rec3->{rec2,rec1}[label = 0.15]
+  
+  rec3->rec3[label=0.7]
+  
+  rec2->rec2[label=0.58]
+  
+  rec2->rec3[label=0.2]
+  
+  rec2->rec1[label=0.22]
+  
+  }",
+  height = 500)
+
+```
+
+
+
+
+
+## (iii) Find the probability that a randomly chosen grandson of an unskilled labourer is a professional man.
+
+$Q^2$
+
+
+```{r}
+two_step2 = transition_matrixQ%*%transition_matrixQ
+print(two_step2)
+```
+The probability of the grandson of an unskilled labourer is a professional is 0.243
+
+## (iv) Determine the steady-state probabilities
+
+```{r}
+
+transition_mat2=matrix(nrow = 3,ncol=3,c(0.7,0.22,0.15,0.25,0.58,0.15,0.05,0.2,0.7))
+statesNames2 <- c("Professional", "Skilled", "Unskilled")
+markovB2 <- new("markovchain", states = statesNames2, transitionMatrix =transition_mat2, name = "A markovchain Object")
+steadyStates(markovB2)
+```
+
+
+
+
+
+# 3. Consider the following Markov Chain
+
+```{r, echo = FALSE}
+transition_matrix3 = matrix(nrow = 3,ncol=3,c(0.5,0.33,0.5,0.25,0,0.5,0.25,0.67,0))
+library(diagram)
+plotmat(transition_matrix3,relsize = .65,cex=0.7)
+
+
+```
+
+## a. Is this chain irreducible?
+
+The chain is irreducible since one can move from one state to any other state
+
+## b. Is this chain aperiodic?
+
+The chain is aperiodic since it has a self referencing edge to state 1
+
+## c. Find the stationary distribution for this chain.
+
+```{r}
+statesNames3 <- c("1", "2", "3")
+markovB3 <- new("markovchain", states = statesNames3, transitionMatrix =transition_matrix3, name = "A markovchain Object")
+steadyStates(markovB3)
+```
+
+## d. Is the stationary distribution a limiting distribution for the chain?
+
+Yes, since the chain is irreducible and aperiodic
+
+
+# 4. For each of the following data sets, is it appropriate to use HMM? Provide a one sentence explanation to your answer.
+
+## (i) Stock market price data
+
+Yes, since the emissions are the different stock prices observed over time and they are a function of the market volatility and news affecting the market.
+
+## (ii) Appraisal of a Secondary school mathematics teacher
+
+Yes, since we only see either a positive or negative appraisal yet it is driven by other hidden factors such as school and class math performance
+
+## (iii) Collaborative filtering on a database of movie reviews: for example, Netflix challenge: predict about how much someone is going to enjoy a movie based on their and other users’ movie preferences
+
+False since user preferences do not change much over time.
+
+## (iv) Daily weather forecast in Nairobi
+
+Yes, since we may not be able to see the change in weather states but one can infer them by using the clothing people are wearing on the particular day.
+
+## (v) Optical character recognition
+
+Yes, since we are only able to different characters, but cannot see the underlying sequence guiding their occurence.
+
+## (vi) Cost of gemstones in Bangladesh (12 marks)
+
+Yes, we only observe the movement of prices of gemstones but cannot observe the changes in supply and demand that drive these prices.
+
+# 5. Show that if any elements of the parameters $\pi$ (start probability) or A (transition probability) for a hidden Markov model are initially set to zero, then those elements will remain zero in all subsequent updates of the EM algorithm
+
+$\pi$ and $A$ updated based on the following update rules
+$$\pi_k = \frac{\gamma(z_{1k})}{\sum^K_{j=1}\gamma(Z_{1j})}$$
+
+
+$$A_{jk} = \frac{\sum^K_{j=1}\xi(z_{t-1},_jz_{tk})}{\sum^K_{m=1}\sum^K_{t=2}\xi(z_{t-1},_jz_{tm})}$$
+
+
+
+
+
+given $$\xi(z_{t-1},_jz_{t}) == \frac{\alpha(z_{t-1})P(x_t|z_t)P(z_t|z_{t-1}\beta(z_t))}{P(X)}$$
+
+
+
+if  $A_{jk}$ is 0, then $\xi(z_{t-1},_jz_{t})$ is also 0, which makes the subsequent updates in the EM algorithm 0
+
