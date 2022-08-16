@@ -1,0 +1,325 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Assignment IV},
+  pdfauthor={Jeremy Gachanja},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Assignment IV}
+\author{Jeremy Gachanja}
+\date{8/7/2022}
+
+\begin{document}
+\maketitle
+
+\hypertarget{b-collins-bought-a-share-of-stock-for-12-and-it-is-believed-that-the-stock-price-moves-day-by-day-as-a-simple-random-walk-with-p-0.58.-what-is-the-probability-that-collins-stock-reaches-the-high-value-of-35-before-the-low-value-of-8}{%
+\section{b) Collins bought a share of stock for \$12, and it is believed
+that the stock price moves (day by day) as a simple random walk with p =
+0.58. What is the probability that Collins' stock reaches the high value
+of \$35 before the low value of
+\$8?}\label{b-collins-bought-a-share-of-stock-for-12-and-it-is-believed-that-the-stock-price-moves-day-by-day-as-a-simple-random-walk-with-p-0.58.-what-is-the-probability-that-collins-stock-reaches-the-high-value-of-35-before-the-low-value-of-8}}
+
+\hypertarget{solution}{%
+\subsection{solution}\label{solution}}
+
+\$\frac{1- (\frac{q}{p})^b}{1- (\frac{q}{p})^{a+b}} \$
+
+where a is the up movement and b is the down movement
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{origin }\OtherTok{=} \DecValTok{12}
+\NormalTok{p }\OtherTok{=} \FloatTok{0.58}
+\NormalTok{q }\OtherTok{=} \DecValTok{1}\SpecialCharTok{{-}}\NormalTok{p}
+\NormalTok{up }\OtherTok{=} \DecValTok{35}
+\NormalTok{down }\OtherTok{=} \DecValTok{8}
+\NormalTok{a }\OtherTok{=}\NormalTok{ up}\SpecialCharTok{{-}}\NormalTok{origin}
+\NormalTok{b }\OtherTok{=}\NormalTok{ origin}\SpecialCharTok{{-}}\NormalTok{down}
+\NormalTok{p\_35 }\OtherTok{=}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{(q}\SpecialCharTok{/}\NormalTok{p)}\SpecialCharTok{\^{}}\NormalTok{b)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{(q}\SpecialCharTok{/}\NormalTok{p)}\SpecialCharTok{\^{}}\NormalTok{(a}\SpecialCharTok{+}\NormalTok{b))}
+\FunctionTok{print}\NormalTok{(p\_35)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.7251491
+\end{verbatim}
+
+\hypertarget{c-explain-clearly-the-difference-between-the-following-terms-as-used-in-markov-chains}{%
+\section{c) Explain clearly the difference between the following terms
+as used in Markov
+Chains}\label{c-explain-clearly-the-difference-between-the-following-terms-as-used-in-markov-chains}}
+
+\hypertarget{i.-communicating-class-and-absorption-state}{%
+\subsection{i. Communicating class and absorption
+state}\label{i.-communicating-class-and-absorption-state}}
+
+An absorption state i is one which is impossible to leave.
+
+Points i and j in a markov chain are said to communicate if i is
+reachable to j and j is rachable to i. This makes the markov chain
+irreducible and thus a communicating class.
+
+\hypertarget{ii.-recurrence-and-nonrecurrence-state}{%
+\subsection{ii. Recurrence and nonrecurrence
+state}\label{ii.-recurrence-and-nonrecurrence-state}}
+
+A recurrent state i is recurrent if and only if one starts at state i
+and there is a probability of 1 that one will eventually return to state
+i.
+
+A non recurrent or transient state is one where if one starts at a state
+i the probability of returning to that state i is less than 1
+
+\hypertarget{iii.-periodicity-and-aperiodic}{%
+\subsection{iii. Periodicity and
+aperiodic}\label{iii.-periodicity-and-aperiodic}}
+
+A state i is periodic if one starts at state i and the number of steps
+to get back to that step i is greater than one.
+
+A state i is aperiodic if one starts at state i and the number of steps
+to get back to that step i is equal to one.
+
+\hypertarget{iv.-ergodic-chain-and-transient-state}{%
+\subsection{iv. Ergodic chain and transient
+state}\label{iv.-ergodic-chain-and-transient-state}}
+
+An egordic chain is one that satisfies three conditions that is the
+chain is aperiodic, recurrent and irreducible.
+
+A transient state is one where if one starts at a state i the
+probability of returning to that state i is less than 1.
+
+\hypertarget{v.-reducible-and-irreducible}{%
+\subsection{v. Reducible and
+irreducible}\label{v.-reducible-and-irreducible}}
+
+An irreducible chain is one where it is possible to move from any state
+to any other state regardless of if the path is direct or indirect.
+
+An irreducible chain is one where it is not possible to move from any
+state to any other state.
+
+\hypertarget{e-clearly-specify-five-components-of-a-hidden-markov-model}{%
+\section{e) Clearly specify five components of a Hidden Markov
+Model}\label{e-clearly-specify-five-components-of-a-hidden-markov-model}}
+
+\hypertarget{f-use-chapman-kolmogorov-postulates-to-derive-the-poisson-process.-also-derive-the-mean-and-variance-of-the-poisson-process.}{%
+\section{f) Use Chapman Kolmogorov postulates to derive the Poisson
+Process. Also derive the mean and variance of the Poisson
+process.}\label{f-use-chapman-kolmogorov-postulates-to-derive-the-poisson-process.-also-derive-the-mean-and-variance-of-the-poisson-process.}}
+
+\hypertarget{g-a-certain-stock-price-has-been-observed-to-follow-a-pattern.-if-the-stock-price-goes-up-one-day-theres-a-25-chance-of-it-rising-tomorrow-a-35-chance-of-it-falling-and-a-40-chance-of-it-remaining-the-same.-if-the-stock-price-falls-one-day-theres-a-25-chance-of-it-rising-tomorrow-a-50-chance-of-it-falling-and-a-25-chance-of-it-remaining-the-same.-finally-if-the-price-is-stable-on-one-day-then-it-has-a-50-50-change-of-rising-or-falling-the-next-day.}{%
+\section{g) A certain stock price has been observed to follow a pattern.
+If the stock price goes up one day, there's a 25\% chance of it rising
+tomorrow, a 35\% chance of it falling, and a 40\% chance of it remaining
+the same. If the stock price falls one day, there's a 25\% chance of it
+rising tomorrow, a 50\% chance of it falling, and a 25\% chance of it
+remaining the same. Finally, if the price is stable on one day, then it
+has a 50-50 change of rising or falling the next
+day.}\label{g-a-certain-stock-price-has-been-observed-to-follow-a-pattern.-if-the-stock-price-goes-up-one-day-theres-a-25-chance-of-it-rising-tomorrow-a-35-chance-of-it-falling-and-a-40-chance-of-it-remaining-the-same.-if-the-stock-price-falls-one-day-theres-a-25-chance-of-it-rising-tomorrow-a-50-chance-of-it-falling-and-a-25-chance-of-it-remaining-the-same.-finally-if-the-price-is-stable-on-one-day-then-it-has-a-50-50-change-of-rising-or-falling-the-next-day.}}
+
+\hypertarget{i.-generate-the-transition-matrix}{%
+\subsection{i. Generate the transition
+matrix}\label{i.-generate-the-transition-matrix}}
+
+\hypertarget{solution-1}{%
+\subsubsection{solution}\label{solution-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(markovchain)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Package:  markovchain
+## Version:  0.9.0
+## Date:     2022-07-01
+## BugReport: https://github.com/spedygiorgio/markovchain/issues
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{transition\_mat}\OtherTok{=}\FunctionTok{matrix}\NormalTok{(}\AttributeTok{nrow =} \DecValTok{3}\NormalTok{,}\AttributeTok{ncol=}\DecValTok{3}\NormalTok{,}\FunctionTok{c}\NormalTok{(}\FloatTok{0.25}\NormalTok{,}\FloatTok{0.25}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.35}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.4}\NormalTok{,}\FloatTok{0.25}\NormalTok{,}\DecValTok{0}\NormalTok{))}
+\NormalTok{statesNames }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Up"}\NormalTok{, }\StringTok{"Down"}\NormalTok{, }\StringTok{"Stable"}\NormalTok{)}
+\NormalTok{markovB }\OtherTok{\textless{}{-}} \FunctionTok{new}\NormalTok{(}\StringTok{"markovchain"}\NormalTok{, }\AttributeTok{states =}\NormalTok{ statesNames, }\AttributeTok{transitionMatrix =}\NormalTok{transition\_mat, }\AttributeTok{name =} \StringTok{"A markovchain Object"}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(markovB)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          Up Down Stable
+## Up     0.25 0.35   0.40
+## Down   0.25 0.50   0.25
+## Stable 0.50 0.50   0.00
+\end{verbatim}
+
+\hypertarget{ii.-draw-the-markov-chain-using-r}{%
+\subsection{ii. Draw the Markov chain using
+R}\label{ii.-draw-the-markov-chain-using-r}}
+
+\hypertarget{solution-2}{%
+\subsubsection{solution}\label{solution-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(diagram)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: shape
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rownames}\NormalTok{(transition\_mat) }\OtherTok{=}\NormalTok{ statesNames}
+\FunctionTok{colnames}\NormalTok{(transition\_mat) }\OtherTok{=}\NormalTok{ statesNames}
+\FunctionTok{plotmat}\NormalTok{(transition\_mat,}\AttributeTok{relsize =}\NormalTok{ .}\DecValTok{65}\NormalTok{,}\AttributeTok{cex=}\FloatTok{0.7}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Assignment-IV_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\hypertarget{iii.-determine-if-the-chain-is-ergodic}{%
+\subsection{iii. Determine if the chain is
+Ergodic}\label{iii.-determine-if-the-chain-is-ergodic}}
+
+\hypertarget{solution-3}{%
+\subsubsection{solution}\label{solution-3}}
+
+The chain is ergodic since it is recurrent, aperiodic and irreducible.
+
+\hypertarget{iv.-find-the-limiting-distribution-of-the-transition-matrix}{%
+\subsection{iv. Find the limiting distribution of the transition
+matrix}\label{iv.-find-the-limiting-distribution-of-the-transition-matrix}}
+
+\hypertarget{solution-4}{%
+\subsubsection{solution}\label{solution-4}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{steadyStates}\NormalTok{(markovB)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             Up      Down    Stable
+## [1,] 0.3092784 0.4536082 0.2371134
+\end{verbatim}
+
+\hypertarget{h-a-telephone-attendant-receives-110-calls-during-the-busy-hour.-each-call-takes-on-average-2.1-minutes-to-process.}{%
+\section{h) A telephone attendant receives 110 calls during the busy
+hour. Each call takes, on average, 2.1 minutes to
+process.}\label{h-a-telephone-attendant-receives-110-calls-during-the-busy-hour.-each-call-takes-on-average-2.1-minutes-to-process.}}
+
+\hypertarget{a-what-percentage-of-the-attendants-time-is-devoted-to-answering-calls}{%
+\subsection{a) What percentage of the attendant's time is devoted to
+answering
+calls?}\label{a-what-percentage-of-the-attendants-time-is-devoted-to-answering-calls}}
+
+\hypertarget{b-how-long-must-people-wait-on-average-before-their-call-is-processed}{%
+\subsection{b) How long must people wait, on average, before their call
+is
+processed?}\label{b-how-long-must-people-wait-on-average-before-their-call-is-processed}}
+
+\end{document}

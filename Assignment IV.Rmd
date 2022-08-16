@@ -5,26 +5,111 @@ date: "8/7/2022"
 output: pdf_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+# b) Collins bought a share of stock for $12, and it is believed that the stock price moves (day by day) as a simple random walk with p = 0.58. What is the probability that Collins’ stock reaches the high value of $35 before the low value of $8?
+
+## solution
+
+$\frac{1- (\frac{q}{p})^b}{1- (\frac{q}{p})^{a+b}} $
+
+where a is the up movement and b is the down movement
+
+```{r}
+origin = 12
+p = 0.58
+q = 1-p
+up = 35
+down = 8
+a = up-origin
+b = origin-down
+p_35 = (1-(q/p)^b)/(1-(q/p)^(a+b))
+print(p_35)
 ```
 
-## R Markdown
+# c) Explain clearly the difference between the following terms as used in Markov Chains
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+## i. Communicating class and absorption state
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+An absorption state i is one which is impossible to leave.
 
-```{r cars}
-summary(cars)
+Points i and j in a markov chain are said to communicate if i is reachable to j and j is rachable to i. This makes the markov chain irreducible and thus a communicating class.
+
+## ii. Recurrence and nonrecurrence state
+
+A recurrent state i is recurrent if and only if one starts at state i and there is a probability of 1 that one will eventually return to state i.
+
+A non recurrent or transient state is one where if one starts at a state i the probability of returning to that state i is less than 1
+
+## iii. Periodicity and aperiodic
+
+A state i is periodic if one starts at state i and the number of steps to get back to that step i is greater than one.
+
+A state i is aperiodic if one starts at state i and the number of steps to get back to that step i is equal to one.
+
+## iv. Ergodic chain and transient state
+
+An egordic chain is one that satisfies three conditions that is the chain is aperiodic, recurrent and irreducible.
+
+A transient state is one where if one starts at a state i the probability of returning to that state i is less than 1.
+
+## v. Reducible and irreducible
+
+An irreducible chain is one where it is possible to move from any state to any other state regardless of if the path is direct or indirect.
+
+An irreducible chain is one where it is not possible to move from any state to any other state.
+
+# e) Clearly specify five components of a Hidden Markov Model
+
+
+# f) Use Chapman Kolmogorov postulates to derive the Poisson Process. Also derive the mean and variance of the Poisson process.
+
+
+# g) A certain stock price has been observed to follow a pattern. If the stock price goes up one day, there's a 25% chance of it rising tomorrow, a 35% chance of it falling, and a 40% chance of it remaining the same. If the stock price falls one day, there's a 25% chance of it rising tomorrow, a 50% chance of it falling, and a 25% chance of it remaining the same. Finally, if the price is stable on one day, then it has a 50-50 change of rising or falling the next day.
+
+## i. Generate the transition matrix
+
+### solution
+```{r}
+library(markovchain)
+transition_mat=matrix(nrow = 3,ncol=3,c(0.25,0.25,0.5,0.35,0.5,0.5,0.4,0.25,0))
+statesNames <- c("Up", "Down", "Stable")
+markovB <- new("markovchain", states = statesNames, transitionMatrix =transition_mat, name = "A markovchain Object")
+print(markovB)
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
+## ii. Draw the Markov chain using R
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+### solution
+
+```{r}
+library(diagram)
+rownames(transition_mat) = statesNames
+colnames(transition_mat) = statesNames
+plotmat(transition_mat,relsize = .65,cex=0.7)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+## iii. Determine if the chain is Ergodic
+
+### solution
+
+The chain is ergodic since it is recurrent, aperiodic and irreducible.
+
+## iv. Find the limiting distribution of the transition matrix
+
+### solution
+
+```{r}
+steadyStates(markovB)
+```
+
+
+# h) A telephone attendant receives 110 calls during the busy hour. Each call takes, on average, 2.1 minutes to process.
+
+## a) What percentage of the attendant's time is devoted to answering calls?
+
+## b) How long must people wait, on average, before their call is processed?
+
+
+
+
+
