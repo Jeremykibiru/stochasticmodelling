@@ -3,13 +3,83 @@ title: "Assignment IV"
 author: "Jeremy Gachanja"
 date: "8/7/2022"
 output: pdf_document
+
+always_allow_html: true
 ---
+
+# a) Clearly distinguish the following terms
+
+## i. Stochastic Process and Deterministic Data
+
+A stochastic process is a sequence of values of a variable where its future values cannot be predicted with certainty.
+
+Deterministic data is a sequence of values whose values can be predicted with a higher degree of certainty. That is the deviation between their mean line and each of the data points observations is negligible.
+
+## ii. Discrete and Continuous stochastic process.
+
+
+## iii. $\sigma$ algebra and Filtration
+
+Filtration is the history of a stochastic process until time t for martingales.
+
+
+
+## iv. Random Walk and Gambler’s Ruin Problem
+
+Let $X_1, X_2.......,Xn$ be identically independently distributed (iid) random variables. $S_n = X_1+X_2+......+X_n$ with the initial condition of $S_0=0$. The sequence $S_n$ is a general random walk.
+
+Assume a gambler starts with an initial wealth of 1. The gamble stakes are either win or lose 1 with probabilities p and q respectively. The gamblers aim is to get to the total wealth of N. If the gambler gets to this level of wealth, he has won the game, however if he loses all his wealth that is wealth =,0, the gambler is ruined. Thus the aim of the gambler`s ruin problem is to get the probability of the gambler being ruined.
+
+## v. Counting Process and Branching Process
+
+## vi. Birth and Death Process
+
+It is a markov chain whose diagram looks as follows.
+
+```{r,echo=FALSE}
+library(diagram)
+transition_mat=matrix(nrow = 3,ncol=3,c('1-p0','q1',0,'p0','1-p1-q1','q1',0,'q1','1-q1'))
+statesNames <- c("0", "1", "2")
+rownames(transition_mat) = statesNames
+colnames(transition_mat) = statesNames
+plotmat(transition_mat,relsize = .65,cex=0.7)
+```
+
+with the transition matrix shown as:
+
+```{r}
+print(transition_mat)
+```
+it has m finite number of states but for this case, the state m is 2. At any state i of the markov chain you have the chance to either go forward one step or back one step or remain at the same point as shown in the chain above. For example at state 1 you can either move to the next forward state 2 with a probability of $q_1$ or back to state 0 with a probability of $p_o$, or remain at the same state 1 with a probability of $1-p_1-q_1$.
+
+An example of such a chain is the queuing line at a shop. The line (i) can either grow when a new customer comes in that is state i+1 or reduce when the attendant serves a customer that is state i-1 or remain the same if no one is served or no new customers enter the line that is i
+
+
+
+
+## vii. Static Simulation Model and Dynamic Simulation Model
+
+## viii. Mathematical Model and Simulation Model
+
+## ix. Monte Carlo Simulation and Queuing System
+
+## x. Markov and Poisson processes
+
+## xi. Queuing and Renewal processes
+
+## xii. Martingale and Brownian motion
+
+A martingale is a stochastic process $X_t$ which the best estimate of the process at time t+1 that is $X_{t+1}$ is $X_t$ that is the best estimate for tomorrow ($X_{t+1}$) given all the information present until today ($F_t$) (filtration rate) is the value observed today ($X_t$).
+
+A Brownian motion is the continuous version of a simple symmetric random walk. For a simple symmetric random walk the random variable $X_i$ takes the value either +1 or -1 with equal probability for the Brownian motion, this step is reduced progressively from 1 until it is infinitesimal.
+
+## xiii. Hidden Markov model and semi-Markov process
 
 # b) Collins bought a share of stock for $12, and it is believed that the stock price moves (day by day) as a simple random walk with p = 0.58. What is the probability that Collins’ stock reaches the high value of $35 before the low value of $8?
 
 ## solution
 
-$\frac{1- (\frac{q}{p})^b}{1- (\frac{q}{p})^{a+b}} $
+$$\frac{1- (\frac{q}{p})^b}{1- (\frac{q}{p})^{a+b}}$$
 
 where a is the up movement and b is the down movement
 
@@ -57,11 +127,146 @@ An irreducible chain is one where it is possible to move from any state to any o
 
 An irreducible chain is one where it is not possible to move from any state to any other state.
 
+# d) Consider an M/M/1 model at steady state, with $\mu$ as the service mechanism rate and $\lambda$ as the arrival rate. 
+
 # e) Clearly specify five components of a Hidden Markov Model
 
+* A set of finite states S that is ($S_1,.....S_n$)
+
+* Finite set of observations V for each state ($V_1,.....,V_m$)
+
+* Initial state distribution $\pi_i$ which represents the fraction of time one spends at a particular state i
+
+* A state transition probability distribution A, ($a_{ij}$) which represents the transition probability of moving from a state i to state j.
+
+*
 
 # f) Use Chapman Kolmogorov postulates to derive the Poisson Process. Also derive the mean and variance of the Poisson process.
 
+A process is a counting process {$N_t,t>=0$} with a rate of $\lambda>0$ if
+
+* Counting starts at 0 at time 0 that is $N_t=0$
+
+* The process has both independent and stationary increments.
+
+* $P_r(N_h-N_0=1)=\lambda h+o(h)$ that is the probability of observing one event after a small interval h is given as $\lambda h+o(h)$ 
+
+* $P_r(N_h-N_0>=2)=o(h)$ that is the probability of observing one event after a small interval h is given as $o(h)$ 
+
+The number of events happening in any interval of length t is poisson distributed with mean $\mu=\lambda t$. That is $P_r(N_{t+s}-N_s=n) = \frac{(\lambda t)^n}{n!}e^{-\lambda t}$ for all s,t>=0. 
+
+$P_n(t)= P_r(N_{t+s}-N_s=n)$ is the distribution of n events in any time interval thus $P_0(t)$ which is the probability of observing 0 events in time interval t and $P_1(n)$ which is which is the probability of observing 1 events in time interval n.
+
+The following 3 steps are applied to show that $P_n(t)$ belongs to the poisson distribution
+
+* Find an ODE for $P_0(t)$ and solve to show that the statement is true for n=0
+
+* Find a system of ODEs for ${P_n(t):n>0}$
+
+* Solve the system of ODEs which describes the probabilities for all n.
+
+
+**Step 1: (n=0)**
+
+$$P_o(t+h)=P_r(N_{t+h}-N_o=0) = P_r(N_{t+h}-N_t=0,N_t-N_0=0)$$
+
+Applying the characteristic of independent increments.
+
+$$P_r(N_{t+h}-N_t=0,N_t-N_0=0)=P_r(N_{t+h}-N_t=0)P_r(N_t-N_0=0)$$
+
+$$P_r(N_{t+h}-N_t=0)P_r(N_t-N_0=0) = P_0(h)\times P_0(t)$$
+
+but $P_o(h)=(1-p_1(h)-P_r(N_{t+h}-N_t>=2))$
+
+Thus:
+$$P_0(h)\times P_0(t)=(1-\lambda h+o(h))\times P_0(t)$$
+
+Rearranging the above and dividing by h:
+$$\frac{P_0(t+h)-P_0(t)}{h}= -\lambda P_0(t) + \frac{o(h)}{h}$$
+Taking limits:
+
+$$lim_{h \to o} \frac{P_0(t+h)-P_0(t)}{h}= -\lambda P_0(t) + lim_{h \to o}\frac{o(h)}{h}$$
+Solving the ODE:
+$$\frac{\partial}{\partial t}P_0(t)=P_0^\prime(t)= -\lambda P_0(t)+0$$
+$$\frac{\partial}{\partial t}\log(P_0(t))=P_0^\prime(t)=-\lambda$$
+Thus:
+
+$$P_0(t)=e^{-\lambda t +c}= Ke^{-\lambda t}$$
+
+If t = 0 then the $P_0(0)$ (probability of observing 0 events in 0 time is 0) yields k=1 thus:
+$$P_0(t) = e^{-\lambda t}$$
+
+**step 2: getting system of ODEs for n>0**
+
+Let A be the interval (0,t) and B the interval (t,t+h). Then:
+
+
+$P_o(t+h)=P_r(N_{t+h}-N_o=n) = \underbrace{P_r(N_{t+h}-N_t=0,N_t-N_0=n)}_{\textrm{where n in A and 0 in B}}+\underbrace{P_r(N_{t+h}-N_t=1,N_t-N_0=n-1)}_{\textrm{or n-1 in A and 1 in B}} +\\ \underbrace{\sum_{k=2}^n P_r(N_{t+h}-N_t=k,N_t-N_0=n-k)}_{\textrm{or the remaining p terms}}= P_0(h)\times P_n(t)+ P_1(h) \times P_{n-1}(t)+o(h)\\ = (1-\underbrace{\lambda h+o(h))}_{\textrm{postulates 3,4}}P_n(t)+\underbrace{(\lambda h)}_{\textrm{postulate 3}}P_{n-1}(t)+o(h)$
+
+
+Rearrange and divide by h to find:
+
+$$\frac{P_n(t+h)-P_n(t)}{h}= -\lambda P_n(t) +\lambda P_{n-1}(t)+ \frac{o(h)}{h}$$
+
+Taking limits of the above:
+
+$$lim_{h \to o} \frac{P_n(t+h)-P_n(t)}{h}= --\lambda P_n(t) +\lambda P_{n-1}(t)+ lim_{h \to o}\frac{o(h)}{h}$$
+
+which yields:
+
+$$\frac{\partial}{\partial t}P_n(t)=P_n^\prime(t)= -\lambda P_n(t)++\lambda P_{n-1}(t)$$
+for $n =1,2,3....$
+
+**Step 3: Getting the MGF associated with the probabilities $P_n(t)$**
+
+The Probability Generating Function (PGF), in defined as:
+$$G(z)=\sum_{Support}P_r(X=x)z^x$$
+
+For the random variable $N_t-N_0$, we have:
+$$G(z,t)=\sum_{n=o}P_n(t)z^n$$
+
+Given the addition of the time argument (for all $t>=0$), for any t the distribution will be the same expression but its parameters depend on t.
+
+The infinite system of ODEs which characterize the probabilities are given as:
+
+$$P^\prime_0(t)=0-\lambda P_0(t)\\
+P^\prime_1(t)=\lambda P_0(t)-\lambda P_1(t)\\
+P^\prime_2(t)=\lambda P_1(t)-\lambda P_2(t)\\
+P^\prime_3(t)=\lambda P_2(t)-\lambda P_3(t)\\.\\.\\.\\
+P^\prime_n(t)=\lambda P_{n-1}(t)-\lambda P_n(t)\\.\\.$$
+
+Multiplying each equation with a corresponding power of the dummy variable z, we get:
+
+$$P^\prime_0(t)=0-\lambda P_0(t)z^0\\
+(P^\prime_1(t)=\lambda P_0(t)-\lambda P_1)(t)z^1\\
+(P^\prime_2(t)=\lambda P_1(t)-\lambda P_2(t))z^2\\
+(P^\prime_3(t)=\lambda P_2(t)-\lambda P_3(t))z^3\\.\\.\\.\\
+(P^\prime_n(t)=\lambda P_{n-1}(t)-\lambda P_n(t))z^n\\.\\.$$
+
+
+Adding them up we get:
+
+$\sum^\infty_{n=0}P^\prime_n(t)z^n= \sum^\infty_{n=1}\lambda P_{n-1}(t)z^n-\sum^\infty_{n=0}\lambda P_n(t)z^n\\$
+$=\lambda z\sum^\infty_{n=1} P_{n-1}(t)z^{n-1}-\lambda \sum^\infty_{n=0} P_n(t)z^n .........(\textrm{taking out z and }\lambda)\\$
+$= \lambda z\sum^\infty_{n=1} P_{m}(t)z^{m}-\lambda \sum^\infty_{n=0} P_n(t)z^n ........(m=n-1)\\$
+$G^\prime(s,t)=\lambda z G(z,t)-\lambda G(z,t) .......(Def.+\frac{\partial}{\partial t}G(z,t)=G^\prime(z,t))$
+
+
+The above gives the ODE:
+$$G^\prime(z,t)=\lambda(z-1)G(z,t)$$
+subject to the boundary conditions 
+$$G(1,t)=1,G(z,0)=1$$
+
+On solving the ODE we get:
+
+$$G(z,t)=exp(\lambda t(z-1))$$
+Comparing the above to the Poisson distribution which is:
+
+$$G(z)=exp(\mu(z-1))$$
+
+One notes that by the uniqueness of the PGF that:
+
+$$N_t-N_0\textrm{~}Poiss(\mu=\lambda t)$$
 
 # g) A certain stock price has been observed to follow a pattern. If the stock price goes up one day, there's a 25% chance of it rising tomorrow, a 35% chance of it falling, and a 40% chance of it remaining the same. If the stock price falls one day, there's a 25% chance of it rising tomorrow, a 50% chance of it falling, and a 25% chance of it remaining the same. Finally, if the price is stable on one day, then it has a 50-50 change of rising or falling the next day.
 
@@ -109,7 +314,17 @@ steadyStates(markovB)
 
 ## b) How long must people wait, on average, before their call is processed?
 
+# i) Jobs arrive to a computer system (consisting of a CPU and an I/O device) according to a Poisson process with rate 8 jobs per minute. Once in the system, a job requires on average 30 seconds of CPU time and 9 minutes of I/O time, in which the CPU and I/O time required by the jobs are exponentially distributed.
 
+## i. What is the probability that a job will have to wait before being processed bythe devices? (Hint: replace the CPU and I/O subsystem as equivalent to single server)
+
+## ii. What proportion of time is the system busy?
+
+## iii. On average, how many jobs are waiting in line to be processed?
+
+## iv. On average, how long will a job spend in the system?
+
+## v. What is the probability that exactly 10 jobs arrive to the system in one minute?
 
 
 
