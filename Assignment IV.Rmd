@@ -17,10 +17,11 @@ Deterministic data is a sequence of values whose values can be predicted with a 
 
 ## ii. Discrete and Continuous stochastic process.
 
+A discrete stochastic process is one where a random variable evolves over time at discrete fixed or random intervals (ie well defined time intervals), while a continuous stochastic process is a function of its time or index parameter.
 
 ## iii. $\sigma$ algebra and Filtration
 
-Filtration is the history of a stochastic process until time t for martingales.
+Filtration is the history of a stochastic process until time t for martingales. while $\sigma$ algebra is a non-empty set of sets that is closed under countable unions, countable intersections and complements
 
 
 
@@ -31,6 +32,8 @@ Let $X_1, X_2.......,Xn$ be identically independently distributed (iid) random v
 Assume a gambler starts with an initial wealth of 1. The gamble stakes are either win or lose 1 with probabilities p and q respectively. The gamblers aim is to get to the total wealth of N. If the gambler gets to this level of wealth, he has won the game, however if he loses all his wealth that is wealth =,0, the gambler is ruined. Thus the aim of the gambler`s ruin problem is to get the probability of the gambler being ruined.
 
 ## v. Counting Process and Branching Process
+
+Counting processes deal with the occurrences of an event over time, e.g, the number of arrivals at a hospital while a branching process is one that models the growth of populations for example the spread of a disease 
 
 ## vi. Birth and Death Process
 
@@ -55,17 +58,29 @@ it has m finite number of states but for this case, the state m is 2. At any sta
 An example of such a chain is the queuing line at a shop. The line (i) can either grow when a new customer comes in that is state i+1 or reduce when the attendant serves a customer that is state i-1 or remain the same if no one is served or no new customers enter the line that is i
 
 
-
-
 ## vii. Static Simulation Model and Dynamic Simulation Model
+
+A static simulation model is one which models a system at a particular point in time while dynamic simulation models a system as it evolves over time.
 
 ## viii. Mathematical Model and Simulation Model
 
+A mathematical model describes a system by a set of variables and a set of equations that establish the relationship between the variables, for example volume of a cuboid is given by $l\times w \times h$, while a simulation model is a parameterised model that is solved using computers since they are too complex to solve analytically.
+
 ## ix. Monte Carlo Simulation and Queuing System
+
+A queuing system is one composed of a queue, arrivals and a system offering a service, thus it is a system where there are servers that provide a service to arriving customers, who form a queue or line while waiting to be served. Monte-carlo simulations however is a model used to determine the probability of different outcomes of an uncertain event.
 
 ## x. Markov and Poisson processes
 
+A poisson process is one where there is a series of discrete events where the average time between events $\lambda$ is known but timing in which the events occur is random.
+
+A markov process is one where the future is independent of the past given the present.
+
 ## xi. Queuing and Renewal processes
+
+A queing process is one where there are servers that provide a service to arriving customers, who form a queue or line while waiting to be served. 
+
+A renewal process is a stochastic process where events/arrivals occur randomly in time. The assumption here is that the arrival intervals are iid.
 
 ## xii. Martingale and Brownian motion
 
@@ -74,6 +89,8 @@ A martingale is a stochastic process $X_t$ which the best estimate of the proces
 A Brownian motion is the continuous version of a simple symmetric random walk. For a simple symmetric random walk the random variable $X_i$ takes the value either +1 or -1 with equal probability for the Brownian motion, this step is reduced progressively from 1 until it is infinitesimal.
 
 ## xiii. Hidden Markov model and semi-Markov process
+
+A hidden markov model is composed of two parts, the markov chain and each state's random emissions, here the chain is unobservable but the emissions are observable, while a semi markov process are generalizations of markov processes where the transition time from each state to another is a random variable.
 
 # b) Collins bought a share of stock for $12, and it is believed that the stock price moves (day by day) as a simple random walk with p = 0.58. What is the probability that Collins’ stock reaches the high value of $35 before the low value of $8?
 
@@ -127,7 +144,91 @@ An irreducible chain is one where it is possible to move from any state to any o
 
 An irreducible chain is one where it is not possible to move from any state to any other state.
 
-# d) Consider an M/M/1 model at steady state, with $\mu$ as the service mechanism rate and $\lambda$ as the arrival rate. 
+# d)Consider an M/M/1 model at steady state, with $\mu$ as the service mechanism rate and $\lambda$ as the arrival rate. Let P_n(t) = P [n customers in the system at time t] (Probability that there are n customers at time t). Derive $L_q, L_s, Wq$ and $W_s$.
+
+Let:
+
+$P_n$ represent the probability that n customers are in a system
+
+$L$ be the expected number of customers in the system
+
+$L_q $ be the expected number of customers in the que
+
+$L_s$ bt the expected number of customers in service
+
+$W$ be the average waiting time in system
+
+$W_q$ be the average waiting time in the que
+
+$W_s$ be the average waiting time in service
+
+$\lambda$ be the arrival rate
+
+$\mu$ be the rate of departure / service rate
+
+
+At the steady state what enters the system is the same as what leaves the system, therefore:
+
+$\lambda P_{n-1}=\mu P_n$
+
+Solving the differential equation iteratively we get:
+
+$$\lambda P_o = \mu P_1= \frac{\lambda}{\mu}P_o,  ........\textrm{at n = 1}$$
+
+
+$$\lambda P_1=\mu P_2 =\frac{\lambda}{\mu}P_1=(\frac{\lambda}{\mu})^2P_o, .....\textrm{for n=2}$$
+Which generalizes to yield:
+
+$$P_n=(\frac{\lambda}{\mu})^nP_o, .......\textrm{for n = 0,1,2,.......n)}$$
+
+Let $\frac{\lambda}{\mu}$ be the fraction of time the server is processing jobs, thus:
+
+$$P_n=\rho^nP_o$$
+To get the value of $P_o$, $P_n$ must meet the conidition:
+
+$$\sum_{n=0}^{\infty}P_n=1=>\sum_{n=0}^{\infty}\rho^nP_o=>P_o\sum_{n=0}^{\infty}\rho^n$$
+
+$$=>P_o(\rho_o^0+\rho_o^1+.......+\rho_o^n)$$
+
+
+for $P<1$ we get:
+
+$$P_o\sum_{n=0}^{\infty}\rho^n=>P_o (\frac{1}{1-\rho})=1$$
+$$P_o=1-\rho=>1-\frac{\lambda} {\mu}=>(1-\rho)\rho^n=>(\frac{\lambda}{\mu})^n(1-\frac{\lambda}{\mu})$$
+Getting the average number of customers in the system $L_s$
+
+$$E(\textrm{n of pple in system})=\sum_{n=0}^{\infty}n P_n=>\sum_{n=0}^{\infty}n(1-\rho)\rho^n$$
+$$=>(1-\rho)\sum_{n=0}^{\infty}n\rho^n$$
+The above is an increasing GP series, thus:
+$$\sum_{n=0}^{\infty}nr^n=\frac{\rho}{(1-\rho)^2}$$
+
+$$L_s=>(1-\rho)\frac{\rho}{(1-\rho)^2}=>\frac{\rho}{(1-\rho)}$$
+Since $\frac{\lambda}{\mu}=\rho$, then :
+
+$$L_s=\frac{\lambda}{(\mu-\lambda)}$$
+Getting the average number of entities in the queue $L_q$
+
+$$E(\textrm{n of pple in queue})=L_q=\sum_{n=1}^{\infty}(n-1)P_n$$
+
+$$=>\sum_{n=1}^{\infty}(n-1)(1-\rho)\rho^n=>\sum_{n=1}^{\infty}nP_n-\sum_{n=1}^{\infty}P_n$$
+$$=>L_s-(1-P_o)=>\frac{\rho}{1-\rho}-[1-(1-\rho)]$$
+$$L_s = \frac{\rho}{1-\rho}$$
+Thus:
+$$\frac{\rho}{1-\rho}-1-[(1-\rho)]=>\frac{\rho^2}{1-\rho}$$
+
+Since $\rho=\frac{\lambda}{\mu}$, we get:
+
+$$L_q=>\frac{\lambda^2}{\mu(\mu-\lambda)}$$
+
+According to littles law:
+
+$$\textrm{average time in system}=W_s=\frac{L_s}\lambda$$
+$$W_s=>\frac{1}{\mu-\lambda}$$
+
+and
+
+$$\textrm{average time in que} = W_q=\frac{L_q}{\lambda}=>\frac{\lambda}{\mu(\mu-\lambda)}=>\frac{\rho}{\mu-\lambda}$$
+
 
 # e) Clearly specify five components of a Hidden Markov Model
 
@@ -237,11 +338,11 @@ P^\prime_n(t)=\lambda P_{n-1}(t)-\lambda P_n(t)\\.\\.$$
 
 Multiplying each equation with a corresponding power of the dummy variable z, we get:
 
-$$P^\prime_0(t)=0-\lambda P_0(t)z^0\\
-(P^\prime_1(t)=\lambda P_0(t)-\lambda P_1)(t)z^1\\
-(P^\prime_2(t)=\lambda P_1(t)-\lambda P_2(t))z^2\\
-(P^\prime_3(t)=\lambda P_2(t)-\lambda P_3(t))z^3\\.\\.\\.\\
-(P^\prime_n(t)=\lambda P_{n-1}(t)-\lambda P_n(t))z^n\\.\\.$$
+$P^\prime_0(t)=0-\lambda P_0(t)z^0\\$
+$(P^\prime_1(t)=\lambda P_0(t)-\lambda P_1)(t)z^1\\$
+$(P^\prime_2(t)=\lambda P_1(t)-\lambda P_2(t))z^2\\$
+$(P^\prime_3(t)=\lambda P_2(t)-\lambda P_3(t))z^3\\.\\.\\.\\$
+$(P^\prime_n(t)=\lambda P_{n-1}(t)-\lambda P_n(t))z^n\\.\\.$
 
 
 Adding them up we get:
@@ -312,7 +413,17 @@ steadyStates(markovB)
 
 ## a) What percentage of the attendant's time is devoted to answering calls?
 
+$$\textrm{call time}=\rho=\frac{\lambda}{\mu}\\
+\lambda=\frac{1}{110}\\
+\mu=\frac{2.1}{60}\\
+\rho=\frac{1}{110} \times \frac{2.1}{60}=0.25$$
+
+
 ## b) How long must people wait, on average, before their call is processed?
+
+$$\textrm{waiting time in que}=W_q=\frac{L_q}{\lambda}\\
+=\frac{\lambda}{\mu(\mu-\lambda)}\\
+W_q= \frac{\rho}{\mu-\lambda}=\frac{0.25}{\frac{2.1}{60}- \frac{1}{110}} = 9.65 $$
 
 # i) Jobs arrive to a computer system (consisting of a CPU and an I/O device) according to a Poisson process with rate 8 jobs per minute. Once in the system, a job requires on average 30 seconds of CPU time and 9 minutes of I/O time, in which the CPU and I/O time required by the jobs are exponentially distributed.
 
