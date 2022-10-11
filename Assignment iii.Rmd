@@ -4,3 +4,68 @@ author: "Jeremy Gachanja"
 date: "8/3/2022"
 output: pdf_document
 ---
+
+# 1
+
+## A
+
+On mixing the 2 samples the resulting mean and variance will be a function of the weighted means and variances of the samples respectively.
+
+$$Var(x)=E(X^2)-[E(X)]^2$$
+
+$$E(X^2)= var(X)+[E(X)]^2$$
+
+
+$$=>[\delta_1\sigma_1^2+\delta_2\sigma_2^2]+[\delta_1\mu_1^2+\delta_2\mu_2^2]$$
+Thus:
+
+$$=>E(X^2)=\delta_1(\mu_1^2+\sigma_1^2)+\delta_2(\mu_2^2+\sigma_1^2)$$
+
+$$E(X)= \mu_1\delta_1+\mu_2\delta_2$$
+
+$$=>E(X^2)= (\mu_1\delta_1+\mu_2\delta_2)^2$$
+
+
+$$=>E(X^2)=\mu_1^2\delta_1^2+\mu_2^2\delta_2^2+2\delta_1\delta_2\mu_1\mu_2$$
+$$Var(X)= [\delta_1(\mu_1^2+\sigma_1^2)+\delta_2(\mu_2^2+\sigma_2^2)]-[\mu_1^2\delta_1^2+\mu_2^2\delta_2^2+2\delta_1\delta_2\mu_1\mu_2]$$
+
+$$=>\delta_1\mu_1^2+\delta_1\sigma_1^2+\delta_2\mu_2^2+\delta_2\sigma_2^2-\mu_1^2\delta_1^2-\mu_2^2\delta_2^2-2\delta_1\delta_2\mu_1\mu_2$$
+$$(\mu_1-\mu_2)^2 = \mu_1^2-2\mu_1\mu_2+\mu^2$$
+Therefore:
+
+
+$$=>\delta_1\sigma_1^2+\delta_2\sigma_2^2+\delta_1\delta_2(\mu_1-\mu_2)^2$$
+
+
+## B
+
+Recall that:
+
+
+$$Var(X)=\delta_1\sigma_1^2+\delta_2\sigma_2^2+\delta_1\delta_2(\mu_1-\mu_2)^2$$
+
+Given that they are poisson processes $var(X)=E(X)=\lambda_1 \textrm{ and } \lambda_2$:
+
+$$\delta_1\lambda_1+\delta_2\lambda_2+\delta_1\delta_2(\lambda_1-\lambda_2)^2$$
+
+And:
+
+$$\textrm{E(mix poisson)}=\delta_1\lambda_1+\delta_2\lambda_2$$
+Thus:
+
+$$=>E(X)+\delta_1\delta_2(\lambda_1-\lambda_2)^2$$
+which prooves that:
+$$var(X)>E(X)$$
+
+
+
+# 2
+
+
+
+
+
+
+
+
+

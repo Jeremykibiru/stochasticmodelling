@@ -24,7 +24,6 @@ A discrete stochastic process is one where a random variable evolves over time a
 Filtration is the history of a stochastic process until time t for martingales. while $\sigma$ algebra is a non-empty set of sets that is closed under countable unions, countable intersections and complements
 
 
-
 ## iv. Random Walk and Gambler’s Ruin Problem
 
 Let $X_1, X_2.......,Xn$ be identically independently distributed (iid) random variables. $S_n = X_1+X_2+......+X_n$ with the initial condition of $S_0=0$. The sequence $S_n$ is a general random walk.
@@ -158,7 +157,7 @@ $L_s$ bt the expected number of customers in service
 
 $W$ be the average waiting time in system
 
-$W_q$ be the average waiting time in the que
+$W_q$ be the average waiting time in the queue
 
 $W_s$ be the average waiting time in service
 
@@ -436,6 +435,17 @@ W_q= \frac{\rho}{\mu-\lambda}=\frac{0.25}{\frac{2.1}{60}- \frac{1}{110}} = 9.65 
 ## iv. On average, how long will a job spend in the system?
 
 ## v. What is the probability that exactly 10 jobs arrive to the system in one minute?
+
+# j) Consider a Markov chain with two possible states, S = {0, 1}. In particular, suppose that the transition matrix is given by
+
+
+
+
+
+
+
+
+
 
 
 
